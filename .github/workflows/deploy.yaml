@@ -36,11 +36,12 @@ jobs:
       IDP_TOKEN_URL: https://login.microsoftonline.com/c5215b59-ce64-44d9-af18-a77fa448e978/oauth2/v2.0/token
       LOGIN_FLOW: client_credentials
 
+      # Use environment-specific secrets (GitHub will use secrets from the environment if they exist)
       IDP_CLIENT_ID: ${{ vars.IDP_CLIENT_ID }}
       IDP_CLIENT_SECRET: ${{ secrets.IDP_CLIENT_SECRET }}
       IDP_SCOPES: ${{ vars.IDP_SCOPES }}
 
-      # This project's environment variables
+      # This project's environment variables (use environment-specific if available)
       DATA_DEVELOPER_SOURCE_ID: ${{ vars.DATA_DEVELOPER_SOURCE_ID }}
 
       DATA_PIPELINE_OEE_CLIENT_ID: ${{ vars.DATA_PIPELINE_OEE_CLIENT_ID }}
@@ -53,6 +54,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Remove .env file to prevent overriding environment variables
+        run: |
+          # Remove any .env files that might override environment variables in CI/CD
+          find . -name ".env" -type f -delete || true
+          find . -name ".env.*" -type f -delete || true
       - name: Set CDF Project Name
         id: set-project
         run: |
