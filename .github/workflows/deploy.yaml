@@ -56,10 +56,11 @@ jobs:
       - name: Set CDF Project Name
         id: set-project
         run: |
-          if [ "${{ env.ENV_NAME }}" == "dev" ]; then
+          ENV="${{ env.ENV_NAME }}"
+          if [ "$ENV" = "dev" ]; then
             echo "CDF_PROJECT=siglekdogfood" >> $GITHUB_ENV
           else
-            echo "CDF_PROJECT=siglekdogfood-${{ env.ENV_NAME }}" >> $GITHUB_ENV
+            echo "CDF_PROJECT=siglekdogfood-$ENV" >> $GITHUB_ENV
           fi
       - name: Verify and Update Toolkit Authorization
         run: yes | cdf auth verify
