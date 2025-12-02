@@ -70,6 +70,21 @@ jobs:
           fi
       - name: Verify and Update Toolkit Authorization
         run: yes | cdf auth verify
+      - name: Verify Service Principal Permissions
+        run: |
+          echo "Verifying service principal has access to project: $CDF_PROJECT"
+          echo "Service Principal Client ID: $IDP_CLIENT_ID"
+          echo ""
+          echo "If deployment fails with 403 on transformations, ensure:"
+          echo "1. Service principal (Client ID: $IDP_CLIENT_ID) is added to 'cognite_toolkit_service_principal' group"
+          echo "   OR added to 'data_developer' group"
+          echo "2. The group must have transformationsAcl: [READ, WRITE] permission"
+          echo "3. Permissions have propagated (may take a few minutes)"
+          echo ""
+          echo "To fix: Go to CDF → $CDF_PROJECT → Access Management → Groups"
+          echo "Add service principal with Client ID: $IDP_CLIENT_ID to:"
+          echo "  - 'cognite_toolkit_service_principal' (recommended for toolkit deployments)"
+          echo "  - OR 'data_developer' group"
       - name: Build Toolkit Configurations
         run: cdf build --env=${{ env.ENV_NAME }}
       - name: Deploy Toolkit Configurations
