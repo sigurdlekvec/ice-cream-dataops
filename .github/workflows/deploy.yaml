@@ -23,12 +23,13 @@ jobs:
     container:
       image: cognite/toolkit:0.6.53  # Make sure the toolkit version matches the version in cdf.toml
     
-    # Use input environment or default to 'test' for push events
+    # Use input environment or default to 'dev' for push events
     environment: ${{ github.event.inputs.environment || 'dev' }}
     env:
       # Cognite Toolkit environment variables
       ENV_NAME: ${{ github.event.inputs.environment || 'dev' }}
-      CDF_PROJECT: siglekdogfood-${{ github.event.inputs.environment || 'dev' }} # change <n> to your project number!
+      # Project names: dev=siglekdogfood, test=siglekdogfood-test, prod=siglekdogfood-prod
+      # Will be set in a step based on ENV_NAME
 
       CDF_CLUSTER: bluefield
       IDP_TENANT_ID: c5215b59-ce64-44d9-af18-a77fa448e978
@@ -52,6 +53,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Set CDF Project Name
+        id: set-project
+        run: |
+          if [ "${{ env.ENV_NAME }}" == "dev" ]; then
+            echo "CDF_PROJECT=siglekdogfood" >> $GITHUB_ENV
+          else
+            echo "CDF_PROJECT=siglekdogfood-${{ env.ENV_NAME }}" >> $GITHUB_ENV
+          fi
       - name: Verify and Update Toolkit Authorization
         run: yes | cdf auth verify
       - name: Build Toolkit Configurations

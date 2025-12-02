@@ -1,6 +1,6 @@
 environment:
   name: prod # prod, staging, dev, test, qa
-  project: siglekdogfood # ex. cdf-bootcamp-01-test
+  project: siglekdogfood-prod # ex. cdf-bootcamp-01-test
   validation-type: prod # prod, staging, dev, test, qa
   selected:
     - modules/bootcamp/data_foundation
