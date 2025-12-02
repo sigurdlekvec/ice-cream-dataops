@@ -54,7 +54,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Set CDF Project Name
+      - name: Set CDF Project Name and IDP_SCOPES
         id: set-project
         run: |
           ENV="${{ env.ENV_NAME }}"
@@ -62,6 +62,11 @@ jobs:
             echo "CDF_PROJECT=siglekdogfood" >> $GITHUB_ENV
           else
             echo "CDF_PROJECT=siglekdogfood-$ENV" >> $GITHUB_ENV
+          fi
+          # Set IDP_SCOPES if not already set
+          if [ -z "$IDP_SCOPES" ]; then
+            echo "IDP_SCOPES=https://bluefield.cognitedata.com/.default" >> $GITHUB_ENV
+            echo "Set IDP_SCOPES to default value"
           fi
       - name: Verify and Update Toolkit Authorization
         run: yes | cdf auth verify
