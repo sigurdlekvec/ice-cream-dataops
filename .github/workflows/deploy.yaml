@@ -54,11 +54,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Remove .env file to prevent overriding environment variables
-        run: |
-          # Remove any .env files that might override environment variables in CI/CD
-          find . -name ".env" -type f -delete || true
-          find . -name ".env.*" -type f -delete || true
       - name: Set CDF Project Name
         id: set-project
         run: |
