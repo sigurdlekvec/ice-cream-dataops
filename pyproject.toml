@@ -1,16 +1,80 @@
-[project]
+[tool.poetry]
 name = "ice-cream-dataops"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "Your Name",email = "you@example.com"}
-]
+description = "Consolidated Toolkit project for Ice Cream DataOps and RMDM Skilling"
+authors = ["Your Name <you@example.com>"]
 readme = "README.md"
-requires-python = "^3.11"
-dependencies = [
-    "cognite-toolkit (==0.6.53)"
-]
+packages = [{include = "src"}]
 
+[tool.poetry.dependencies]
+python = ">=3.11,<3.14"
+
+# Cognite ecosystem
+cognite-sdk = "*"
+cognite-toolkit = "^0.7.48"
+cognite-pygen = "*"
+
+# Data Engineering essentials
+pandas = "*"
+numpy = "*"
+openpyxl = "*"
+orjson = "*"
+
+# Developer tools
+python-dotenv = "*"
+pydantic = "*"
+pydantic-settings = "*"
+typer = "*"
+arrow = "*"
+requests = "*"
+httpx = "*"
+
+# Visualization & App building
+matplotlib = "*"
+seaborn = "*"
+plotly = "*"
+
+# Streamlit
+streamlit = "*"
+
+# Retry / Resilience
+tenacity = "*"
+
+# ML / AI Essentials
+scikit-learn = "*"
+xgboost = "*"
+tqdm = "*"
+joblib = "*"
+
+# Optional cache handling (useful for APIs)
+cachetools = "*"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "*"
+ruff = "*"
+pytest = "*"
+pytest-cov = "*"
+faker = "*"
+mypy = "*"
+notebook = "*"
+ipykernel = "*"
+types-requests = "*"
+types-python-dateutil = "*"
+types-pyyaml = "*"
+
+[tool.isort]
+profile = "black"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "ANN", "UP", "S"]
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]  # Allow 'assert' in tests
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

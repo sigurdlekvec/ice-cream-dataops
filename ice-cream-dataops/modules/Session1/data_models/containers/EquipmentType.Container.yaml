@@ -1,0 +1,22 @@
+space: {{ rmdm_model_space }}
+externalId: EquipmentType
+name: RM Equipment Type
+description: Container for equipment types that classify physical equipment.
+properties:
+  class:
+    type:
+      list: false
+      type: direct
+    immutable: false
+    nullable: false
+    autoIncrement: false
+    name: Class
+    description: A mandatory relation to the EquipmentClass that categorizes this equipment type.
+constraints:
+  cdf_cdm_CogniteEquipmentType:
+    require:
+      space: cdf_cdm
+      externalId: CogniteEquipmentType
+      type: container
+    constraintType: requires
+

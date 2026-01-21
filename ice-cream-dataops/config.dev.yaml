@@ -6,6 +6,9 @@ environment:
     - modules/bootcamp/data_foundation
     - modules/bootcamp/ice_cream_api
     - modules/bootcamp/use_cases/oee
+    # RMDM Sessions (from cognite_dm_skilling)
+    # - modules/Session1
+    # - modules/Session2
 
 variables:
   modules:
@@ -34,3 +37,14 @@ variables:
           oee_space_name: oee_ts_space
           data_pipeline_oee_client_id: ${DATA_PIPELINE_OEE_CLIENT_ID}
           data_pipeline_oee_client_secret: ${DATA_PIPELINE_OEE_CLIENT_SECRET}
+
+    # RMDM Sessions (from cognite_dm_skilling)
+    Session1:
+      rmdm_model_space: session1_rmdm
+      rmdm_model_views_version: '1.0.0'
+      rmdm_instance_space: session1_rmdm_instance
+
+    Session2:
+      rmdm_model_space: session2_rmdm
+      rmdm_model_views_version: '1.0.0'
+      rmdm_instance_space: session2_rmdm_instance
