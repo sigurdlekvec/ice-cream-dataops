@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "ice-cream-dataops"
+name = "cog-siglek"
 version = "0.1.0"
-description = "Consolidated Toolkit project for Ice Cream DataOps and RMDM Skilling"
+description = "Consolidated Toolkit project for cog-siglek organization"
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 packages = [{include = "src"}]

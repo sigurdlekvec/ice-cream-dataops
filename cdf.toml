@@ -1,5 +1,5 @@
 [cdf]
-default_organization_dir = "ice-cream-dataops"
+default_organization_dir = "cog-siglek"
 default_env = "dev"
 
 [modules]
