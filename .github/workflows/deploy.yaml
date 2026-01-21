@@ -21,7 +21,7 @@ jobs:
     name: Build & Deploy
     runs-on: ubuntu-latest
     container:
-      image: cognite/toolkit:0.6.53  # Make sure the toolkit version matches the version in cdf.toml
+      image: cognite/toolkit:0.7.48  # Make sure the toolkit version matches the version in cdf.toml
     
     # Use input environment or default to 'dev' for push events
     environment: ${{ github.event.inputs.environment || 'dev' }}
